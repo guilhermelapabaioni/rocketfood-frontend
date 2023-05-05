@@ -1,6 +1,10 @@
-import {Container} from './styles'
+import { useAuth } from '../../auth/auth'
+
+import { Container } from './styles'
 
 export function Title() {
+  const { admin } = useAuth()
+
   return (
     <Container>
       <svg
@@ -16,6 +20,7 @@ export function Title() {
         />
       </svg>
       <h2>food explorer</h2>
+      {admin ? <p>admin</p> : ''}
     </Container>
   )
 }

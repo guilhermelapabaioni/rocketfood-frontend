@@ -1,3 +1,3 @@
 Ajustes:
 
-Página Home: Ajustar campo title e shadow-box
+Página SignIn - Validar uso do try - catch

@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useEffect } from 'react'
 
 import { api } from '../services/api'
+import { toast } from 'react-toastify'
 
 export const AuthContext = createContext({})
 
@@ -8,10 +9,10 @@ function AuthProvider({ children }) {
   const [data, setData] = useState({})
 
   async function signIn({ email, password }) {
+
     try {
       const response = await api.post(`/sessions`, { email, password })
       const { admin, user, token } = response.data
-      console.log(response)
 
       if (admin) {
         localStorage.setItem('@rocketfood:admin', JSON.stringify(admin))
@@ -30,9 +31,9 @@ function AuthProvider({ children }) {
       }
     } catch (error) {
       if (error.response) {
-        alert(error.response.data.message)
+        toast.error(error.response.data.message)
       } else {
-        alert('Não foi possível entrar.')
+        toast.error('Não foi possível entrar.')
       }
     }
   }

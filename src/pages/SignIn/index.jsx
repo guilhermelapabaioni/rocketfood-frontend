@@ -9,6 +9,7 @@ import { ButtonText } from '../../components/ButtonText'
 
 import { Container } from './styles'
 
+import 'react-toastify/dist/ReactToastify.css'
 import { ToastContainer } from 'react-toastify'
 import { toast } from 'react-toastify'
 
@@ -28,10 +29,13 @@ export function SignIn() {
       } else if (!password) {
         setPasswordError(true)
       }
+
       signIn({ email, password })
     } catch (error) {
       if (error.message) {
         toast.error(error.response.data.message)
+        setEmailError(true)
+        setPasswordError(true)
       } else {
         toast.error('We have an error in our service, try again later')
       }

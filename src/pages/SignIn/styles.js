@@ -46,9 +46,8 @@ export const Container = styled.div`
 
   @media screen and (min-width: 768px) {
     > form {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
+      flex-direction: row;
+      gap: 4rem;
 
       > .content{
         background-color: ${({ theme }) => theme.COLORS_DARK.dark_700};

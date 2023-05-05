@@ -7,10 +7,17 @@ export const Container = styled.div`
   gap: .8rem;
 
   > h2{
-      font-family: ${({ theme }) => theme.FONTS_FAMILY.roboto};
-      font-weight: 700;
-      font-size: 2.2rem;
-      line-height: 4rem;
-      color: ${({ theme }) => theme.COLORS_LIGHT.light_100};
-    }
+    font-family: ${({ theme }) => theme.FONTS_FAMILY.roboto};
+    font-weight: 700;
+    font-size: 2.2rem;
+    line-height: 4rem;
+    color: ${({ theme }) => theme.COLORS_LIGHT.light_100};
+  }
+
+  > p {
+    color: ${({ theme }) => theme.COLORS_OTHERS.cake_200};
+    font-family: ${({ theme }) => theme.FONTS_FAMILY.roboto};
+    font-size:1.2rem;
+    line-height: 160%;
+  }
 `
