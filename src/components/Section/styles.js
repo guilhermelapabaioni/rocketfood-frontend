@@ -11,11 +11,14 @@ export const Container = styled.div`
   @media screen and (min-width: 860px) {
     > .arrowLeft, .arrowRight{
       position: absolute;
-      top: 5rem;
-      bottom: 0;
+      top: 50%;
+      transform: translateY(-50%);
       cursor: pointer;
-      width: 18rem;
       display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50%;
+      height: 100%;
     }
 
     > .arrowLeft {
@@ -58,6 +61,13 @@ export const Carousel = styled.div`
     overflow-x: hidden;
     gap: 2rem;
   }
+`
+
+export const ArrowContainer = styled.div`
+  position: relative;
+  height: 100%;
+  width: 50%;
+  z-index: 10;
 `
 
 export const Items = styled.div`

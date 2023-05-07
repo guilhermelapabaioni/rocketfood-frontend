@@ -2,7 +2,7 @@ import { FiPlus, FiX } from 'react-icons/all'
 
 import { Container } from './styles'
 
-export function FoodItem({ isNew = false, value, onClick, ...rest }) {
+export function FoodItem({ isNew = false, value, onClick, ...rest }) {  
   return (
     <Container isNew={isNew}>
       <input

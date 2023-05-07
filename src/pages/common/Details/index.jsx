@@ -1,5 +1,7 @@
 import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
+
+import { useFoodsProvider } from '../../../auth/foodFunctions'
 import { api } from '../../../services/api'
 
 import {
@@ -26,8 +28,10 @@ import {
 
 export function Details() {
   const params = useParams()
-
   const [data, setData] = useState()
+  const [quantity, setQuantity] = useState(1)
+
+  const { incrementOrders } = useFoodsProvider()
 
   useEffect(() => {
     async function fetchFood() {
@@ -65,10 +69,22 @@ export function Details() {
                 ))}
             </Tags>
             <Items>
-              <ButtonText icon={AiOutlineMinus} />
-              <p>01</p>
-              <ButtonText icon={AiOutlinePlus} />
-              <Button icon={IoReceiptOutline} title={`pedir ∙ ${data.price}`} />
+              <ButtonText
+                icon={AiOutlineMinus}
+                size={24}
+                onClick={() => setQuantity(quantity - 1)}
+              />
+              <p>{quantity}</p>
+              <ButtonText
+                icon={AiOutlinePlus}
+                size={24}
+                onClick={() => setQuantity(quantity + 1)}
+              />
+              <Button
+                icon={IoReceiptOutline}
+                title={`pedir ∙ R$ ${data.price * quantity},00`}
+                onClick={incrementOrders}
+              />
             </Items>
           </Informations>
         </Content>

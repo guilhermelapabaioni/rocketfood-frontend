@@ -7,8 +7,9 @@ import { Input } from '../../components/Input'
 import { Button } from '../../components/Button'
 import { ButtonText } from '../../components/ButtonText'
 
-import { Container } from './styles'
+import { Container, Content, FormContent, FormInput } from './styles'
 
+import Toast from '../../components/Toast'
 import 'react-toastify/dist/ReactToastify.css'
 import { ToastContainer } from 'react-toastify'
 import { toast } from 'react-toastify'
@@ -43,40 +44,43 @@ export function SignIn() {
   }
 
   return (
-    <Container>
-      <ToastContainer />
-      <Form>
-        <Title />
-        <div className="content">
-          <h2>Sign In</h2>
-          <div>
-            <label htmlFor="">E-mail</label>
-            <Input
-              type="email"
-              placeholder="your@email.com"
-              error={emailError}
-              onChange={event => {
-                setEmail(event.target.value)
-                setEmailError(false)
-              }}
-            />
-          </div>
-          <div>
-            <label htmlFor="">Password</label>
-            <Input
-              type="password"
-              placeholder="Insira sua senha"
-              error={passwordError}
-              onChange={event => {
-                setPassword(event.target.value)
-                setPasswordError(false)
-              }}
-            />
-          </div>
-          <Button title={'Sign In'} onClick={handleSignIn} />
-          <ButtonText title="Create your account" to="/register" />
-        </div>
-      </Form>
-    </Container>
+    <Toast>
+      <Container>
+        <Content>
+          <Title />
+          <Form>
+            <FormContent>
+              <h2>Sign In</h2>
+              <FormInput>
+                <label htmlFor="">E-mail</label>
+                <Input
+                  type="email"
+                  placeholder="your@email.com"
+                  error={emailError}
+                  onChange={event => {
+                    setEmail(event.target.value)
+                    setEmailError(false)
+                  }}
+                />
+              </FormInput>
+              <FormInput>
+                <label htmlFor="">Password</label>
+                <Input
+                  type="password"
+                  placeholder="Insira sua senha"
+                  error={passwordError}
+                  onChange={event => {
+                    setPassword(event.target.value)
+                    setPasswordError(false)
+                  }}
+                />
+              </FormInput>
+              <Button title={'Sign In'} onClick={handleSignIn} />
+              <ButtonText title="Create your account" to="/register" />
+            </FormContent>
+          </Form>
+        </Content>
+      </Container>
+    </Toast>
   )
 }

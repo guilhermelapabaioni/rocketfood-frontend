@@ -148,7 +148,7 @@ export function New() {
             <Input
               type="text"
               placeholder="R$ 40,00"
-              onChange={event => setPrice(`R$ ` + event.target.value)}
+              onChange={event => setPrice(event.target.value)}
             />
           </div>
           <div className="items-group">

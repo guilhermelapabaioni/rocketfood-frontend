@@ -14,18 +14,18 @@ export const Content = styled.div`
   text-align: center;
   gap: 1rem;
 
-  > a:nth-child(1) {
+  > .buttonIcon {
     justify-content: end;
   }
 
-  > a img {
+  > .foodImage{
     width: 100%;
     max-width: 88px;
     height: auto;
     margin: 0 auto;
   }
 
-  > a:nth-child(3){
+  > .foodName{
     justify-content: center;
   }
 
@@ -40,8 +40,16 @@ export const Content = styled.div`
   }
 
   @media (min-width: 768px){
-    > img {
-      max-width: 176px;
+    > .foodImage {
+      max-width: 146px;
+    }
+
+    > .foodName{
+      font-size: 2.4rem;
+    }
+
+    > p {
+      font-size: 2.4rem;
     }
   }
 `

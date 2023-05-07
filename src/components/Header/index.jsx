@@ -1,4 +1,6 @@
+import { useContext } from 'react'
 import { useAuth } from '../../auth/auth'
+import { useFoodsProvider } from '../../auth/foodFunctions'
 
 import {
   AiOutlineMenu,
@@ -21,6 +23,7 @@ import {
 
 export function Header() {
   const { admin, signOut } = useAuth()
+  const { orders } = useFoodsProvider()
 
   return (
     <Container>
@@ -37,19 +40,26 @@ export function Header() {
         />
       </DivInputSearch>
       {admin ? (
-        ''
+        <DivButtonOrder>
+          <ButtonText title={'Novo prato'} to="/admin/new" />
+        </DivButtonOrder>
       ) : (
         <DivButtonOrder>
           <ButtonText
             icon={MdOutlineReceipt}
             size={30}
-            title={`Pedidos ` + 0}
+            title={`Pedidos (${orders})`}
           />
-          <p>0</p>
+          <p>{orders}</p>
         </DivButtonOrder>
       )}
       <DivButtonExit>
-        <ButtonText icon={RxExit} size={30} onClick={() => signOut()} to={'/'} />
+        <ButtonText
+          icon={RxExit}
+          size={30}
+          onClick={() => signOut()}
+          to={'/'}
+        />
       </DivButtonExit>
     </Container>
   )
