@@ -9,7 +9,6 @@ import { Footer } from '../../components/Footer'
 import { Container, Content, Intro } from './styles'
 
 export function Home() {
-
   const [foods, setFoods] = useState([])
 
   useEffect(() => {

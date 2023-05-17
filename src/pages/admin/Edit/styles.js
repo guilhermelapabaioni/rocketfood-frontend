@@ -8,55 +8,99 @@ export const Container = styled.div`
 export const Content = styled.div`
   overflow-y: auto;
   height: 100vh;
-
-  padding-block: 7rem;
+  padding-block: 8rem;
   padding-inline: 1.2rem;
 
   > a {
-    margin-top: 1.6rem;
+    margin-top: 2.4rem;
     margin-bottom: 1rem;
-
+    
     font-size:1.6rem;
   }
 
   > .form {
-    gap: .6rem;
+    gap: 1rem;
     padding: 0;
 
-    > .items-group{
+    > .group {
       display: flex;
       flex-direction: column;
-      gap: .6rem;
-    }
-
-    > .foodItem {
-      > div {
-        display: flex;
-        flex-wrap: wrap;
-        gap: .2rem;
-        background: ${({ theme }) => theme.COLORS_DARK.dark_900};
-        padding: .6rem;
-        border-radius: .4rem;
-      }
-    }
-
-    > .buttons {
-      display: flex;
       gap: 1rem;
-      margin-top: .4rem;
 
-      > button {
-        padding: .8rem;
-      }
-
-      > button:nth-child(1){
-        background-color: ${({ theme }) => theme.COLORS_DARK.dark_800};
-      }
-
-      > button:nth-child(2){
-        background-color: ${({ theme }) => theme.COLORS_OTHERS.tomato_400};
+      > .items-group{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: .6rem;
       }
     }
   }
-  
+
+  @media (min-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-inline: 8vw;
+    padding-bottom: 30vh;
+
+    > a {
+      margin-top: 0;
+      margin-bottom: 2rem;
+      margin-left: .2rem;
+      font-size: 2.4rem;
+    }
+
+    > .form {
+      gap: 2rem;
+      > .header-grid{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+
+      > .main-grid {
+        gap: 1rem;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        align-items: center;
+      }
+    }
+  }
+`
+
+export const FoodItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  overflow-x: auto;
+  gap: .6rem;
+
+  > div {
+    display: flex;
+    gap: .6rem;
+    background: ${({ theme }) => theme.COLORS_DARK.dark_900};
+    padding: .4rem;
+    border-radius: .4rem;
+  }
+`
+
+export const FormButtons = styled.div`
+  margin-top: 1.4rem;
+  display: flex;
+  gap: 1rem;
+
+  > button {
+    padding: .8rem;
+    background-color: ${({ theme }) => theme.COLORS_OTHERS.tomato_400};
+  }
+
+  @media (min-width: 768px){
+    justify-content: end;
+
+    > button {
+      width: 20rem;
+    }
+
+    > .buttonDelete{
+      background: ${({ theme }) => theme.COLORS_DARK.dark_800};
+    }
+  }
 `

@@ -9,33 +9,41 @@ export const Container = styled.div`
 `
 
 export const Content = styled.div`
-  margin-top: 8rem;
-  padding: 1.6rem;
-  height: calc(100vh - 8rem);
+  height:100vh;
+  
+  padding-block: 8rem;
+  padding-inline: 1.6rem;
 
   display: flex;
   flex-direction: column;
+
   gap: 2rem;
+
   position: relative;
 
   > div:nth-child(1) {
     position: absolute;
-    top: 1rem;
+    top: 9rem;
     > a {
-      font-size: 2.4rem;
+      font-size: 2rem;
     }
   }
 
   @media (min-width: 768px) {
-    flex-direction: row;
-    height: 100vh;
-    align-items: center;
-    margin: 0;
-    padding: 4rem;
-    gap: 4rem;
+    display: grid;
+    grid-template-columns: 2fr 2fr;
 
-    > div:nth-child(1){
+    align-items: center;
+    justify-content: center;
+
+    padding-inline: 6rem;
+
+    > div:nth-child(1) {
+      left: 4vw;
       top: 12rem;
+      > a {
+        font-size: 2.6rem;
+      }
     }
   }
 `
@@ -45,17 +53,16 @@ export const FoodImage = styled.div`
   margin: 0 auto;
 
   > img {
-    width: 20rem;
+    max-width: 264px;
   }
 
   @media (min-width: 768px) {
-    height: 100%;
-    display: flex;
-    align-items: center;
     padding: 0;
 
     > img {
-      width: 36vw;
+      display: flex;
+      align-items: right;
+      min-width: 26vw;
     }
   }
 `
@@ -81,33 +88,36 @@ export const Informations = styled.div`
       line-height: 140%;
     }
 
+    > button {
+      margin-top: 2rem;
+    }
+
     @media (min-width:768px){
       align-items: start;
+
+      > h2 {
+        font-size:4rem;
+      }
+
+      >p {
+        font-size: 2.4rem;
+      }
+
+      > button{
+        width: fit-content;
+        padding: 2rem 4rem;
+      }
     }
 `
 
 export const Tags = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 2rem;
   justify-content: center;
+  width: 100%;
 
   @media (min-width:768px){
     justify-content: flex-start;
-  }
-`
-
-export const Items = styled.div`
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-
-  margin-top: 3rem;
-
-  > p {
-    color: ${({ theme }) => theme.COLORS_LIGHT.light_300};
-    font-family: ${({ theme }) => theme.FONTS_FAMILY.poppins};
-    font-size: 1.6rem;
-    line-height: 140%;
   }
 `

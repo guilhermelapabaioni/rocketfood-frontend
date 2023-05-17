@@ -53,9 +53,14 @@ export const InputField = styled.input`
     font-size: 1.4rem;
   }
 
-  &[type="file"]::-webkit-file-upload-button{
-    display: none;
+  &[type="file"], ::-webkit-file-upload-button{
+    opacity: 0;
+    padding: 0;
   }
+
+  /* &[type="file"]::-webkit-file-upload-button{
+    display: none;
+  } */
 
   &[type="file"]:hover{
     opacity: 0.8;

@@ -11,11 +11,11 @@ import { Form } from '../../../components/Form'
 import { Label } from '../../../components/Label'
 import { Input } from '../../../components/Input'
 import { Select } from '../../../components/Select'
-import { FoodItem } from '../../../components/FoodItem'
+import { Ingredient } from '../../../components/Ingredient'
 import { Textarea } from '../../../components/Textarea'
 import { Button } from '../../../components/Button'
 
-import { Container, Content } from './styles'
+import { Container, Content, FoodItem, FormButtons } from './styles'
 
 export function Edit() {
   const navigate = useNavigate('')
@@ -54,8 +54,9 @@ export function Edit() {
       const dataJSON = JSON.stringify(dataUpdated)
 
       const fileUploadForm = new FormData()
+      const image = data.image
 
-      fileUploadForm.append('image', imageFoodFile)
+      fileUploadForm.append('image', image)
       fileUploadForm.append('data', dataJSON)
 
       await api.put(`/foods/${params.id}`, fileUploadForm, {
@@ -116,73 +117,82 @@ export function Edit() {
       {data ? (
         <Content>
           <ButtonText icon={IoChevronBackOutline} title={'voltar'} to="/" />
-          <Form title="Editar prato" className="form" enctype="multipart/form-data">
-            <div className="items-group">
-              <Label title="Imagem do prato" />
-              <Input
-                type="file"
-                icon={AiOutlineCloudUpload}
-                size={30}
-                onChange={handleChangeFoodImage}
-              />
+          <Form
+            title="Editar prato"
+            className="form"
+            enctype="multipart/form-data"
+          >
+            <div className="group header-grid">
+              <div className="items-group">
+                <Label title="Imagem do prato" />
+                <Input
+                  type="file"
+                  icon={AiOutlineCloudUpload}
+                  size={26}
+                  onChange={handleChangeFoodImage}
+                  placeholder={data.image}
+                />
+              </div>
+              <div className="items-group">
+                <Label title="Nome do prato" />
+                <Input
+                  type="text"
+                  placeholder={data.name}
+                  onChange={event => setName(event.target.value)}
+                />
+              </div>
+              <div className="items-group">
+                <Label title="Categoria" />
+                <Select onChange={event => setCategory(event.target.value)}>
+                  <option value="">Selecione a categoria do prato</option>
+                  <option value="refeicao">Refeição</option>
+                  <option value="prato-principal">Prato principal</option>
+                  <option value="sobremesa">Sobremesa</option>
+                </Select>
+              </div>
             </div>
-            <div className="items-group">
-              <Label title="Nome do prato" />
-              <Input
-                type="text"
-                placeholder={data.name}
-                onChange={event => setName(event.target.value)}
-              />
-            </div>
-            <div className="items-group">
-              <Label title="Categoria" />
-              <Select onChange={event => setCategory(event.target.value)}>
-                <option value="">Selecione a categoria do prato</option>
-                <option value="refeicao">Refeição</option>
-                <option value="prato-principal">Prato principal</option>
-                <option value="sobremesa">Sobremesa</option>
-              </Select>
-            </div>
-            <div className="items-group foodItem">
-              <Label title="Ingredientes" />
-              <div>
-                {oldIngredients.map(ingredient => (
-                  <FoodItem
-                    key={String(ingredient.id)}
-                    value={ingredient.ingredient}
-                    onClick={() => deleteIngredient(ingredient)}
+            <div className="group main-grid">
+              <FoodItem>
+                <Label title="Ingredientes" />
+                <div>
+                  <Ingredient
+                    isNew
+                    placeholder="Ingrediente"
+                    value={newIngredient}
+                    onChange={event => setNewIngredient(event.target.value)}
+                    onKeyPress={addIngredient}
                   />
-                ))}
-                {ingredients.map(
-                  (ingredient, index) => (
-                    (index = ++ingredientsMaxId),
-                    (
-                      <FoodItem
-                        key={String(index)}
-                        value={ingredient}
-                        onClick={() => deleteIngredient(ingredient)}
-                      />
+                  {ingredients.map(
+                    (ingredient, index) => (
+                      (index = ++ingredientsMaxId),
+                      (
+                        <Ingredient
+                          key={String(index)}
+                          value={ingredient}
+                          onClick={() => deleteIngredient(ingredient)}
+                        />
+                      )
                     )
-                  )
-                )}
-                <FoodItem
-                  isNew
-                  placeholder="Ingrediente"
-                  value={newIngredient}
-                  onChange={event => setNewIngredient(event.target.value)}
-                  onKeyPress={addIngredient}
+                  )}
+                  {oldIngredients.map(ingredient => (
+                    <Ingredient
+                      key={String(ingredient.id)}
+                      value={ingredient.ingredient}
+                      onClick={() => deleteIngredient(ingredient)}
+                    />
+                  ))}
+                </div>
+              </FoodItem>
+              <div className="items-group">
+                <Label title="Preço" />
+                <Input
+                  type="text"
+                  placeholder={data.price}
+                  onChange={event => setPrice(event.target.value)}
                 />
               </div>
             </div>
-            <div className="items-group">
-              <Label title="Preço" />
-              <Input
-                type="text"
-                placeholder={data.price}
-                onChange={event => setPrice(event.target.value)}
-              />
-            </div>
-            <div className="items-group">
+            <div className="group items-group">
               <Label title="Descrição" />
               <Textarea
                 placeholder={data.description}
@@ -191,10 +201,14 @@ export function Edit() {
                 onChange={event => setDescription(event.target.value)}
               />
             </div>
-            <div className="buttons">
-              <Button title="Excluir prato" onClick={deleteFood} />
+            <FormButtons>
+              <Button
+                title="Excluir prato"
+                onClick={deleteFood}
+                className="buttonDelete"
+              />
               <Button title="Salvar alterações" onClick={handleEditFood} />
-            </div>
+            </FormButtons>
           </Form>
         </Content>
       ) : (

@@ -38,9 +38,10 @@ export function Food({ data, ...rest }) {
             size={24}
             to={`/admin/details/edit/${data.id}`}
           />
-          <ButtonText to={`/admin/details/${data.id}`}>
+          <ButtonText to={`/admin/details/${data.id}`}
+            className="foodImage"
+          >
             <img
-              className="foodImage"
               src={foodImageURL}
               alt={`Imagem do prato ${data.name}`}
             />
@@ -55,17 +56,9 @@ export function Food({ data, ...rest }) {
         </Content>
       ) : (
         <Content>
-          <ButtonText
-            className="buttonIcon"
-            icon={AiOutlineHeart}
-            size={24}
-          />
-          <ButtonText to={`/admin/details/${data.id}`}>
-            <img
-              className="foodImage"
-              src={foodImageURL}
-              alt={`Imagem do prato ${data.name}`}
-            />
+          <ButtonText className="buttonIcon" icon={AiOutlineHeart} size={24} />
+          <ButtonText to={`/admin/details/${data.id}`} className="foodImage">
+            <img src={foodImageURL} alt={`Imagem do prato ${data.name}`} />
           </ButtonText>
           <ButtonText
             className="foodName"

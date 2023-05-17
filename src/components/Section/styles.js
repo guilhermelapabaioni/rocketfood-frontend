@@ -1,39 +1,85 @@
 import styled from "styled-components";
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 export const Container = styled.div`
   max-width: 100vw;
   position: relative;
+`
 
-  > .arrowLeft, .arrowRight{
+export const SliderWrapper = styled(Slider)`
+
+  .slick-slide > div {
+    margin: 0 1rem;
+    height: 100%;
+  }
+
+  .slick-slide {
+    height: 100%;
+    width: fit-content; /* Usando fit-content para que o tamanho do slide seja definido pelo seu conteúdo */
+  }
+
+  .slick-arrow::before{
     display: none;
   }
 
-  @media screen and (min-width: 860px) {
-    > .arrowLeft, .arrowRight{
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 50%;
+  @media (min-width: 768px) {
+    .slick-arrow{
+      display: block;
+    }
+
+    .slick-prev,
+    .slick-next {
+      display: block;
+      width: 80px;
       height: 100%;
+      z-index: 1;
     }
 
-    > .arrowLeft {
+    .slick-prev {
       left: 0;
-      right: auto;
+      background: linear-gradient(
+        to right,
+        rgba(0, 10, 15, 1) 40%,
+        rgba(0, 10, 15, 0) 100%
+      );
 
-      background: linear-gradient(to left, transparent 0, #00070A 100%);
+      &::before{
+        height: 100%;
+        display: flex;
+        align-items: center;
+        
+        content: '<';
+        color: white;
+        opacity: 1;
+        font-size: 32px;
+        font-size: 4rem;
+        font-family: ${({ theme }) => theme.FONTS_FAMILY.roboto};
+      }
     }
 
-    > .arrowRight {
-      left: auto;
-      right: 0;
-      justify-content: right;
+    .slick-next {
+      background: linear-gradient(
+        to left,
+        rgba(0, 10, 15, 1) 40%,
+        rgba(0, 10, 15, 0) 100%
+      );
 
-      background: linear-gradient(to right, transparent 0, #00070A 100%);
+      &::before{
+        right: 0;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        
+        content: '>';
+        color: white;
+        opacity: 1;
+        font-size: 32px;
+        font-size: 4rem;
+        font-family: ${({ theme }) => theme.FONTS_FAMILY.roboto};
+      }
     }
   }
 `
@@ -48,33 +94,5 @@ export const Logo = styled.div`
 
   @media screen and (min-width: 768px) {
     font-size: 3.2rem
-  }
-`
-
-export const Carousel = styled.div`
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  display: flex;
-  gap: 1.6rem;
-
-  @media screen and (min-width: 860px){
-    overflow-x: hidden;
-    gap: 2rem;
-  }
-`
-
-export const ArrowContainer = styled.div`
-  position: relative;
-  height: 100%;
-  width: 50%;
-  z-index: 10;
-`
-
-export const Items = styled.div`
-  display: flex;
-  gap: 1.6rem;
-
-  @media screen and (min-width: 768px){
-    gap: 2rem;
   }
 `

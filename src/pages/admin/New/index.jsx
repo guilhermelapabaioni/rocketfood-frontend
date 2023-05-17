@@ -13,11 +13,11 @@ import { Input } from '../../../components/Input'
 import { Select } from '../../../components/Select'
 import { Textarea } from '../../../components/Textarea'
 import { Button } from '../../../components/Button'
-import { FoodItem } from '../../../components/FoodItem'
+import { Ingredient } from '../../../components/Ingredient'
 
-import { Container, Content } from './styles'
+import { Container, Content, FoodItem, FormButtons } from './styles'
 
-import { ToastContainer, toast } from 'react-toastify'
+import { toast } from 'react-toastify'
 
 export function New() {
   const navigate = useNavigate('')
@@ -39,7 +39,7 @@ export function New() {
   }
 
   function addIngredientOnKeyDown(event) {
-    if (setNewIngredient(event.target.value) === ['']) {
+    if (event.key === 'Enter' && newIngredient === '') {
       toast.error('Please enter the value of the new ingredient')
     } else if (event.key === 'Enter') {
       setIngredients(prevState => [...prevState, newIngredient])
@@ -81,8 +81,8 @@ export function New() {
         headers: { 'Content-Type': 'multipart/form-data' }
       })
 
+      toast.success('Food created successfully!')
       navigate('/')
-      return toast.message('Prato criado com sucesso!')
     } catch (error) {
       toast.error(
         'Probably we have some problem in the system, try again later'
@@ -93,65 +93,68 @@ export function New() {
   return (
     <Container>
       <Header />
-      <ToastContainer />
       <Content>
         <ButtonText icon={IoChevronBackOutline} title={'voltar'} to="/" />
         <Form title="Novo prato" className="form" enctype="multipart/form-data">
-          <div className="items-group">
-            <Label title="Imagem do prato" />
-            <Input
-              type="file"
-              icon={AiOutlineCloudUpload}
-              size={30}
-              onChange={handleChangeFoodImage}
-            />
+          <div className="group header-grid">
+            <div className="items-group">
+              <Label title="Imagem do prato" />
+              <Input
+                type="file"
+                icon={AiOutlineCloudUpload}
+                size={30}
+                onChange={handleChangeFoodImage}
+              />
+            </div>
+            <div className="items-group">
+              <Label title="Nome do prato" />
+              <Input
+                type="text"
+                placeholder="Salada César"
+                onChange={event => setName(event.target.value)}
+              />
+            </div>
+            <div className="items-group">
+              <Label title="Categoria" />
+              <Select onChange={event => setCategory(event.target.value)}>
+                <option value="">Selecione a categoria do prato</option>
+                <option value="refeicao">Refeição</option>
+                <option value="prato-principal">Prato principal</option>
+                <option value="sobremesa">Sobremesa</option>
+              </Select>
+            </div>
           </div>
-          <div className="items-group">
-            <Label title="Nome do prato" />
-            <Input
-              type="text"
-              placeholder="Salada César"
-              onChange={event => setName(event.target.value)}
-            />
-          </div>
-          <div className="items-group">
-            <Label title="Categoria" />
-            <Select onChange={event => setCategory(event.target.value)}>
-              <option value="">Selecione a categoria do prato</option>
-              <option value="refeicao">Refeição</option>
-              <option value="prato-principal">Prato principal</option>
-              <option value="sobremesa">Sobremesa</option>
-            </Select>
-          </div>
-          <div className="items-group foodItem">
-            <Label title="Ingredientes" />
-            <div>
-              {ingredients.map((ingredient, index) => (
-                <FoodItem
-                  key={String(index)}
-                  value={ingredient}
-                  onClick={() => deleteIngredient(ingredient)}
+          <div className="group main-grid">
+            <FoodItem>
+              <Label title="Ingredientes" />
+              <div>
+                {ingredients.map((ingredient, index) => (
+                  <Ingredient
+                    key={String(index)}
+                    value={ingredient}
+                    onClick={() => deleteIngredient(ingredient)}
+                  />
+                ))}
+                <Ingredient
+                  isNew
+                  placeholder="Ingrediente"
+                  value={newIngredient}
+                  onChange={event => setNewIngredient(event.target.value)}
+                  onKeyDown={addIngredientOnKeyDown}
+                  onClick={addIngredientOnClick}
                 />
-              ))}
-              <FoodItem
-                isNew
-                placeholder="Ingrediente"
-                value={newIngredient}
-                onChange={event => setNewIngredient(event.target.value)}
-                onKeyDown={addIngredientOnKeyDown}
-                onClick={addIngredientOnClick}
+              </div>
+            </FoodItem>
+            <div className="items-group">
+              <Label title="Preço" />
+              <Input
+                type="text"
+                placeholder="R$ 40,00"
+                onChange={event => setPrice(event.target.value)}
               />
             </div>
           </div>
-          <div className="items-group">
-            <Label title="Preço" />
-            <Input
-              type="text"
-              placeholder="R$ 40,00"
-              onChange={event => setPrice(event.target.value)}
-            />
-          </div>
-          <div className="items-group">
+          <div className="group items-group">
             <Label title="Descrição" />
             <Textarea
               placeholder="A Salada César é uma opção refrescante para o verão."
@@ -160,10 +163,10 @@ export function New() {
               onChange={event => setDescription(event.target.value)}
             />
           </div>
+          <FormButtons>
+            <Button title="Criar prato" onClick={handleCreateFood} />
+          </FormButtons>
         </Form>
-        <div className="buttons">
-          <Button title="Criar prato" onClick={handleCreateFood} />
-        </div>
       </Content>
       <Footer />
     </Container>

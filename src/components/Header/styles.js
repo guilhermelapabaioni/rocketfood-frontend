@@ -8,11 +8,9 @@ export const Container = styled.div`
   
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   position: fixed;
   z-index: 1;
-
-  
 `
 
 export const DivButtonMenu = styled.div`
@@ -23,10 +21,10 @@ export const DivButtonMenu = styled.div`
 
 export const DivInputSearch = styled.div`
   display: none;
-  width: 46%;
 
   @media (min-width: 768px) {
     display: block;
+    width: 36vw;
   }
 `
 
@@ -35,6 +33,7 @@ export const DivButtonOrder = styled.div`
   text-align: center;
 
   > a {
+    justify-content: center;
     > p {
       display: none;
     }
@@ -56,6 +55,7 @@ export const DivButtonOrder = styled.div`
 
   @media (min-width: 768px) {
     > a {
+      width: 16vw;
       background-color: ${({theme}) => theme.COLORS_OTHERS.tomato_100};
       padding: 1rem 2rem;
       border-radius: .5rem;

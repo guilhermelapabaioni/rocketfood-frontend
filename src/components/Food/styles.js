@@ -4,7 +4,7 @@ export const Container = styled.div`
   background-color: ${({ theme }) => theme.COLORS_DARK.dark_200};
   padding: 1rem 1.4rem;
   border-radius: .6rem;
-  min-width: 18rem;
+  min-width: 16rem;
   min-height: 24rem;
 `
 
@@ -15,18 +15,21 @@ export const Content = styled.div`
   gap: 1rem;
 
   > .buttonIcon {
-    justify-content: end;
+    align-self: end;
   }
 
   > .foodImage{
-    width: 100%;
-    max-width: 88px;
-    height: auto;
-    margin: 0 auto;
+    align-self: center;
+    >img {
+      width: 100%;
+      max-width: 92px;
+      height: auto;
+      margin: 0 auto;
+    }
   }
 
   > .foodName{
-    justify-content: center;
+    align-self: center;
   }
 
   > p {
@@ -40,16 +43,20 @@ export const Content = styled.div`
   }
 
   @media (min-width: 768px){
-    > .foodImage {
-      max-width: 146px;
+    min-height: 26rem;
+
+    > .foodImage{
+      >img {
+        max-width: 146px;
+      }
     }
 
     > .foodName{
-      font-size: 2.4rem;
+      font-size: 1.8rem;
     }
 
     > p {
-      font-size: 2.4rem;
+      font-size: 1.8rem;
     }
   }
 `

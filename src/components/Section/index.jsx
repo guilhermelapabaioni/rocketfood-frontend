@@ -1,51 +1,75 @@
-import { RiArrowLeftSLine, RiArrowRightSLine } from 'react-icons/all';
-import { useRef } from 'react';
-import { ButtonText } from '../ButtonText';
-import { Container, Logo, Carousel, Items, ArrowContainer } from './styles';
+import { useState, useEffect, useRef } from 'react'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
+import { Container, Logo, SliderWrapper } from './styles'
+
+import {PrevArrow} from '../PrevArrow'
+import {NextArrow} from '../NextArrow'
 
 export function Section({ title, children, ...rest }) {
-  const carousel = useRef(null);
+  const sliderRef = useRef(null)
 
-  const handleLeftClick = e => {
-    e.preventDefault();
-    carousel.current.scrollLeft -= carousel.current.offsetWidth / 2;
-
-    if (carousel.current.scrollLeft === 0) {
-      carousel.current.scrollLeft = carousel.current.offsetWidth;
+  useEffect(() => {
+    const slider = sliderRef.current
+    const totalItems = slider.props.children.length
+    const visibleItems = slider.props.slidesToShow
+    const isScrollable = totalItems > visibleItems
+    const breakpoint = slider.props.responsive.find(
+      ({ breakpoint }) => window.innerWidth <= breakpoint
+    )
+    const breakpointItems = breakpoint
+      ? breakpoint.settings.slidesToShow
+      : visibleItems
+    const isScrollableOnBreakpoint = totalItems > breakpointItems
+    if (isScrollableOnBreakpoint) {
+      slider.slickNext() // Inicia o Slider na primeira página
     }
-  };
+  }, [children])
 
-  const handleRightClick = e => {
-    e.preventDefault();
-    carousel.current.scrollLeft += carousel.current.offsetWidth / 2;
+  const handlePrev = () => {
+    sliderRef.current.slickPrev()
+  }
 
-    if (carousel.current.scrollLeft > carousel.current.offsetWidth) {
-      carousel.current.scrollLeft = 0;
-    }
-  };
+  const handleNext = () => {
+    sliderRef.current.slickNext()
+  }
+
+  const arrowStyle = {
+    // Estilo das setas
+    backgroundColor: 'black',
+    opacity: '0.6',
+    zIndex: '1'
+  }
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    edgeFriction: 800,
+    speed: 1000,
+    slidesToScroll: 1,
+    variableWidth: true,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1
+        }
+      }
+    ]
+  }
 
   return (
     <Container {...rest}>
       <Logo>{title}</Logo>
-      <Carousel ref={carousel}>
-        <ArrowContainer>
-          <ButtonText
-            className="arrowLeft"
-            icon={RiArrowLeftSLine}
-            size={30}
-            onClick={handleLeftClick}
-          />
-        </ArrowContainer>
-        <Items>{children}</Items>
-        <ArrowContainer>
-          <ButtonText
-            className="arrowRight"
-            icon={RiArrowRightSLine}
-            size={30}
-            onClick={handleRightClick}
-          />
-        </ArrowContainer>
-      </Carousel>
+      <SliderWrapper {...settings} ref={sliderRef}>
+        {children}
+      </SliderWrapper>
     </Container>
-  );
+  )
 }

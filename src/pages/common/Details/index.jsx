@@ -22,8 +22,7 @@ import {
   Content,
   FoodImage,
   Informations,
-  Tags,
-  Items
+  Tags
 } from './styles'
 
 export function Details() {
@@ -50,7 +49,7 @@ export function Details() {
           <div>
             <ButtonText icon={IoChevronBackOutline} title={'voltar'} to="/" />
           </div>
-          <FoodImage className="foodImage">
+          <FoodImage>
             <img
               src={`http://localhost:3000/tmp/uploads/${data.image}`}
               alt={`Imagem da comida ${data.name}`}

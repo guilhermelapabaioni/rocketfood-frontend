@@ -9,6 +9,7 @@ export const Container = styled(Link)`
   line-height: 2.4rem;
   text-align: center;
   
+  width: fit-content;
   display: flex;
   align-items: center;
   gap: .2rem;
