@@ -55,7 +55,7 @@ export const InputField = styled.input`
 
   &[type="file"], ::-webkit-file-upload-button{
     opacity: 0;
-    padding: 0;
+    padding: .14rem;
   }
 
   /* &[type="file"]::-webkit-file-upload-button{

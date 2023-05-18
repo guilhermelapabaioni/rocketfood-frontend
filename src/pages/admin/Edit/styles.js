@@ -53,14 +53,15 @@ export const Content = styled.div`
     > .form {
       gap: 2rem;
       > .header-grid{
+        gap: 4rem;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
       }
 
       > .main-grid {
-        gap: 1rem;
+        gap: 4rem;
         display: grid;
-        grid-template-columns: 2fr 1fr;
+        grid-template-columns: 3fr 1fr;
         align-items: center;
       }
     }
@@ -70,15 +71,27 @@ export const Content = styled.div`
 export const FoodItem = styled.div`
   display: flex;
   flex-direction: column;
-  overflow-x: auto;
   gap: .6rem;
 
   > div {
     display: flex;
+    flex-wrap: wrap;
     gap: .6rem;
     background: ${({ theme }) => theme.COLORS_DARK.dark_900};
     padding: .4rem;
     border-radius: .4rem;
+  }
+
+  @media (min-width: 768px){
+    overflow-x: auto;
+
+    > div {
+      display: flex;
+      gap: .6rem;
+      background: ${({ theme }) => theme.COLORS_DARK.dark_900};
+      padding: .4rem;
+      border-radius: .4rem;
+   }
   }
 `
 
@@ -92,15 +105,15 @@ export const FormButtons = styled.div`
     background-color: ${({ theme }) => theme.COLORS_OTHERS.tomato_400};
   }
 
+  > .buttonDelete{
+    background: ${({ theme }) => theme.COLORS_DARK.dark_800};
+  }
+
   @media (min-width: 768px){
     justify-content: end;
 
     > button {
       width: 20rem;
-    }
-
-    > .buttonDelete{
-      background: ${({ theme }) => theme.COLORS_DARK.dark_800};
     }
   }
 `
