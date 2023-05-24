@@ -99,7 +99,7 @@ export const Informations = styled.div`
         font-size:4rem;
       }
 
-      >p {
+      > p {
         font-size: 2.4rem;
       }
 
@@ -116,6 +116,12 @@ export const Tags = styled.div`
   gap: 2rem;
   justify-content: center;
   width: 100%;
+
+  > .quantityOrder{
+      color: ${({ theme }) => theme.COLORS_OTHERS.cake_200};
+      font-family: ${({ theme }) => theme.FONTS_FAMILY.roboto};
+      font-size: 1.6rem;
+    }
 
   @media (min-width:768px){
     justify-content: flex-start;

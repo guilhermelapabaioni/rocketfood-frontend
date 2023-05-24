@@ -10,7 +10,6 @@ import {
 } from 'react-icons/all'
 
 import { Title } from '../Title'
-import { Input } from '../Input'
 import { ButtonText } from '../ButtonText'
 
 import {
@@ -21,7 +20,7 @@ import {
   DivButtonExit
 } from './styles'
 
-export function Header() {
+export function Header({ children }) {
   const { admin, signOut } = useAuth()
   const { orders } = useFoodsProvider()
 
@@ -31,14 +30,7 @@ export function Header() {
         <ButtonText icon={AiOutlineMenu} size={30} to="/menu" />
       </DivButtonMenu>
       <Title />
-      <DivInputSearch>
-        <Input
-          className="search"
-          placeholder="Busque por pratos ou ingredientes"
-          icon={BiSearchAlt}
-          size={26}
-        />
-      </DivInputSearch>
+      <DivInputSearch>{children}</DivInputSearch>
       {admin ? (
         <DivButtonOrder>
           <ButtonText title={'Novo prato'} to="/admin/new" />

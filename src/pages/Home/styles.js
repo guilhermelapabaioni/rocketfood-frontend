@@ -5,6 +5,7 @@ export const Container = styled.div`
   height: 100vh;
   background-color: ${({ theme }) => theme.COLORS_DARK.dark_400};
   overflow-y: auto;
+  overflow-x: hidden;
 `
 
 export const Content = styled.div`

@@ -17,18 +17,12 @@ import { Tag } from '../../../components/Tag'
 import { Button } from '../../../components/Button'
 import { Footer } from '../../../components/Footer'
 
-import {
-  Container,
-  Content,
-  FoodImage,
-  Informations,
-  Tags
-} from './styles'
+import { Container, Content, FoodImage, Informations, Tags } from './styles'
 
 export function Details() {
   const params = useParams()
   const [data, setData] = useState()
-  const [quantity, setQuantity] = useState(1)
+  let [quantity, setQuantity] = useState(1)
 
   const { incrementOrders } = useFoodsProvider()
 
@@ -67,13 +61,15 @@ export function Details() {
                   />
                 ))}
             </Tags>
-            <Items>
+            <Tags>
               <ButtonText
                 icon={AiOutlineMinus}
                 size={24}
                 onClick={() => setQuantity(quantity - 1)}
               />
-              <p>{quantity}</p>
+              <p className="quantityOrder">
+                {quantity < 1 ? (quantity = 1) : quantity}
+              </p>
               <ButtonText
                 icon={AiOutlinePlus}
                 size={24}
@@ -81,10 +77,10 @@ export function Details() {
               />
               <Button
                 icon={IoReceiptOutline}
-                title={`pedir ∙ R$ ${data.price * quantity},00`}
+                title={`pedir ∙ R$ ${parseFloat(data.price) * quantity},00`}
                 onClick={incrementOrders}
               />
-            </Items>
+            </Tags>
           </Informations>
         </Content>
       ) : (

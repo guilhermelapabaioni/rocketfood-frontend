@@ -1,7 +1,10 @@
+import { BiSearchAlt } from 'react-icons/all'
+
 import { useState, useEffect } from 'react'
 import { api } from '../../services/api'
 
 import { Header } from '../../components/Header'
+import { Input } from '../../components/Input'
 import { Section } from '../../components/Section'
 import { Food } from '../../components/Food'
 import { Footer } from '../../components/Footer'
@@ -10,19 +13,32 @@ import { Container, Content, Intro } from './styles'
 
 export function Home() {
   const [foods, setFoods] = useState([])
+  const [search, setSearch] = useState('')
 
   useEffect(() => {
-    async function fecthFoods() {
-      const response = await api.get(`/foods`)
-      setFoods(response.data)
+    async function fetchFoods() {
+      try {
+        const response = await api.get(`/foods?search=${search}`)
+        setFoods(response.data)
+      } catch (error) {
+        console.error(error)
+      }
     }
 
-    fecthFoods()
-  }, [])
+    fetchFoods()
+  }, [search])
 
   return (
     <Container>
-      <Header />
+      <Header>
+        <Input
+          className="search"
+          placeholder="Busque por pratos ou ingredientes"
+          icon={BiSearchAlt}
+          size={26}
+          onChange={event => setSearch(event.target.value)}
+        />
+      </Header>
       <Content>
         <Intro>
           <div>
@@ -42,7 +58,7 @@ export function Home() {
               )
           )}
         </Section>
-        <Section title="Pratos principais">
+        <Section title="Sobremesas">
           {foods.map(
             food =>
               food.category === 'prato-principal' && (
@@ -50,7 +66,7 @@ export function Home() {
               )
           )}
         </Section>
-        <Section title="Sobremesas">
+        <Section title="Bebidas">
           {foods.map(
             food =>
               food.category === 'sobremesa' && (

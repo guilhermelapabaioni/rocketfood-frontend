@@ -6,6 +6,10 @@ export const Container = styled.div`
   border-radius: .6rem;
   min-width: 16rem;
   min-height: 24rem;
+
+  @media (min-width: 768px) {
+    min-width: 20rem;
+  }
 `
 
 export const Content = styled.div`
@@ -32,7 +36,11 @@ export const Content = styled.div`
     align-self: center;
   }
 
-  > p {
+  > .description{
+    display: none;
+  }
+
+  > .price {
     color: ${({ theme }) => theme.COLORS_OTHERS.cake_200};
     font-family: ${({ theme }) => theme.FONTS_FAMILY.roboto};
     font-size: 1.6rem;
@@ -55,7 +63,17 @@ export const Content = styled.div`
       font-size: 1.8rem;
     }
 
-    > p {
+    > .description{
+      display: block;
+      color: ${({theme}) => theme.COLORS_LIGHT.light_400};
+      font-family: ${({theme}) => theme.FONTS_FAMILY.roboto};
+      font-size: 1.4rem;
+      line-height: 160%;
+      max-width: 16rem;
+      margin: 0 auto;
+    }
+
+    > .price {
       font-size: 1.8rem;
     }
   }

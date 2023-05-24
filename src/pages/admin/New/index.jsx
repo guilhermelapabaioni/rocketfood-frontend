@@ -119,8 +119,8 @@ export function New() {
               <Select onChange={event => setCategory(event.target.value)}>
                 <option value="">Selecione a categoria do prato</option>
                 <option value="refeicao">Refeição</option>
-                <option value="prato-principal">Prato principal</option>
                 <option value="sobremesa">Sobremesa</option>
+                <option value="bebida">Bebidas</option>
               </Select>
             </div>
           </div>
@@ -128,13 +128,6 @@ export function New() {
             <FoodItem>
               <Label title="Ingredientes" />
               <div>
-                {ingredients.map((ingredient, index) => (
-                  <Ingredient
-                    key={String(index)}
-                    value={ingredient}
-                    onClick={() => deleteIngredient(ingredient)}
-                  />
-                ))}
                 <Ingredient
                   isNew
                   placeholder="Ingrediente"
@@ -143,6 +136,13 @@ export function New() {
                   onKeyDown={addIngredientOnKeyDown}
                   onClick={addIngredientOnClick}
                 />
+                {ingredients.map((ingredient, index) => (
+                  <Ingredient
+                    key={String(index)}
+                    value={ingredient}
+                    onClick={() => deleteIngredient(ingredient)}
+                  />
+                ))}
               </div>
             </FoodItem>
             <div className="items-group">

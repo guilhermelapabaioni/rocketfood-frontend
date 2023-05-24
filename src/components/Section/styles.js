@@ -9,7 +9,6 @@ export const Container = styled.div`
 `
 
 export const SliderWrapper = styled(Slider)`
-
   .slick-slide > div {
     margin: 0 1rem;
     height: 100%;
@@ -18,6 +17,7 @@ export const SliderWrapper = styled(Slider)`
   .slick-slide {
     height: 100%;
     width: fit-content; /* Usando fit-content para que o tamanho do slide seja definido pelo seu conteúdo */
+    align-self: left;
   }
 
   .slick-arrow::before{

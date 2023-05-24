@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   height: 100vh;
   width: 100%;
-  `
+`
 
 export const Content = styled.div`
   overflow-y: auto;
@@ -41,7 +41,7 @@ export const Content = styled.div`
     flex-direction: column;
     justify-content: center;
     padding-inline: 8vw;
-    padding-bottom: 30vh;
+    padding-bottom: 16vh;
 
     > a {
       margin-top: 0;
@@ -76,7 +76,7 @@ export const FoodItem = styled.div`
   > div {
     display: flex;
     flex-wrap: wrap;
-    gap: .6rem;
+    gap: .2rem;
     background: ${({ theme }) => theme.COLORS_DARK.dark_900};
     padding: .4rem;
     border-radius: .4rem;
@@ -84,13 +84,17 @@ export const FoodItem = styled.div`
 
   @media (min-width: 768px){
     overflow-x: auto;
+    position: relative;
+
+    > label {
+      position: fixed;
+    }
 
     > div {
-      display: flex;
+      margin-top: 20px;
+      flex-wrap: nowrap;
+      width: calc(100% + max-content);
       gap: .6rem;
-      background: ${({ theme }) => theme.COLORS_DARK.dark_900};
-      padding: .4rem;
-      border-radius: .4rem;
    }
   }
 `

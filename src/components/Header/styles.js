@@ -10,7 +10,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: space-evenly;
   position: fixed;
-  z-index: 1;
+  z-index: 2;
 `
 
 export const DivButtonMenu = styled.div`
@@ -55,10 +55,10 @@ export const DivButtonOrder = styled.div`
 
   @media (min-width: 768px) {
     > a {
-      width: 16vw;
+      width: 20vw;
       background-color: ${({theme}) => theme.COLORS_OTHERS.tomato_100};
-      padding: 1rem 2rem;
-      border-radius: .5rem;
+      padding: 1rem 1.8rem;
+      border-radius: .6rem;
       
       > p {
         display: block;

@@ -7,6 +7,7 @@ export const Container = styled.footer`
   height: 6rem;
   width: 100%;
   padding: .6rem;
+  z-index: 2;
 
   background-color: ${({ theme }) => theme.COLORS_DARK.dark_600};
 
@@ -29,7 +30,7 @@ export const Container = styled.footer`
     }
   }
 
-  > p{
+  > p {
     width: 100%;
     color: ${({ theme }) => theme.COLORS_LIGHT.light_200};
     font-family: ${({ theme }) => theme.FONTS_FAMILY.roboto};

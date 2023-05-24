@@ -6,6 +6,7 @@ import { IoChevronBackOutline, AiOutlineCloudUpload } from 'react-icons/all'
 
 import { Header } from '../../../components/Header'
 import { Footer } from '../../../components/Footer'
+import { WindowConfirm } from '../../../components/WindowConfirm'
 import { ButtonText } from '../../../components/ButtonText'
 import { Form } from '../../../components/Form'
 import { Label } from '../../../components/Label'
@@ -15,6 +16,7 @@ import { Ingredient } from '../../../components/Ingredient'
 import { Textarea } from '../../../components/Textarea'
 import { Button } from '../../../components/Button'
 
+import { toast } from 'react-toastify'
 import { Container, Content, FoodItem, FormButtons } from './styles'
 
 export function Edit() {
@@ -36,6 +38,8 @@ export function Edit() {
 
   const [imageFoodFile, setImageFoodFile] = useState()
 
+  const [deleted, setDeleted] = useState(false)
+
   function handleChangeFoodImage(event) {
     const file = event.target.files[0]
     setImageFoodFile(file)
@@ -54,22 +58,20 @@ export function Edit() {
       const dataJSON = JSON.stringify(dataUpdated)
 
       const fileUploadForm = new FormData()
-      const image = data.image
-
-      fileUploadForm.append('image', image)
+      fileUploadForm.append('image', imageFoodFile)
       fileUploadForm.append('data', dataJSON)
 
       await api.put(`/foods/${params.id}`, fileUploadForm, {
         headers: { 'Content-Type': 'multipart/form-data' }
       })
 
-      alert(`Prato ${data.name} atualizado com sucesso!`)
+      toast.success(`Prato ${data.name} atualizado com sucesso!`)
       navigate('/')
     } catch (error) {
       if (error.response) {
-        alert(error.response.data.message)
+        toast.error(error.response.data.message)
       } else {
-        alert('Não foi possivel atualizar o perfil.')
+        toast.error('Não foi possivel atualizar a comida.')
       }
     }
   }
@@ -91,11 +93,22 @@ export function Edit() {
   }
 
   async function deleteFood() {
-    const confirm = window.confirm('Are you sure you want to delete this note?')
-    if (confirm) {
       await api.delete(`/foods/${params.id}`)
+      toast.success('You have successfully deleted your food.')
       navigate('/')
-    }
+  }
+
+  const handleConfirmDelete = () => {
+    setDeleted(false)
+    deleteFood()
+  }
+
+  const handleCancelDelete = () => {
+    setDeleted(false)
+  }
+
+  const handleClickDelete = () => {
+    setDeleted(true)
   }
 
   useEffect(() => {
@@ -146,8 +159,8 @@ export function Edit() {
                 <Select onChange={event => setCategory(event.target.value)}>
                   <option value="">Selecione a categoria do prato</option>
                   <option value="refeicao">Refeição</option>
-                  <option value="prato-principal">Prato principal</option>
                   <option value="sobremesa">Sobremesa</option>
+                  <option value="bebida">Bebidas</option>
                 </Select>
               </div>
             </div>
@@ -204,9 +217,16 @@ export function Edit() {
             <FormButtons>
               <Button
                 title="Excluir prato"
-                onClick={deleteFood}
+                onClick={handleClickDelete}
                 className="buttonDelete"
               />
+              {deleted && (
+                <WindowConfirm
+                  message={'You sure you want to delete this food?'}
+                  onConfirm={handleConfirmDelete}
+                  onCancel={handleCancelDelete}
+                />
+              )}
               <Button title="Salvar alterações" onClick={handleEditFood} />
             </FormButtons>
           </Form>

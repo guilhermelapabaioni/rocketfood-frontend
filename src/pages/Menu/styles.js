@@ -43,3 +43,19 @@ export const Content = styled.div`
     }
   }
 `
+
+export const SearchedFood = styled.div`
+  max-height: 52rem;
+  width: clamp(20rem, 40vw + 10rem, 32rem);
+  margin: 0 auto;
+  padding: 2rem;
+  overflow-y: auto;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  > div {
+    min-height: fit-content;
+  }
+`
