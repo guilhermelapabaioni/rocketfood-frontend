@@ -8,11 +8,14 @@ export const Container = styled.div`
   min-height: 24rem;
 
   @media (min-width: 768px) {
-    min-width: 20rem;
+    min-width: 24rem;
+    min-height: 42rem;
   }
 `
 
 export const Content = styled.div`
+  height: 100%;
+  
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -46,13 +49,7 @@ export const Content = styled.div`
     font-size: 1.6rem;
   }
 
-  > button {
-    padding: .4rem;
-  }
-
   @media (min-width: 768px){
-    min-height: 26rem;
-
     > .foodImage{
       >img {
         max-width: 146px;
@@ -65,8 +62,8 @@ export const Content = styled.div`
 
     > .description{
       display: block;
-      color: ${({theme}) => theme.COLORS_LIGHT.light_400};
-      font-family: ${({theme}) => theme.FONTS_FAMILY.roboto};
+      color: ${({ theme }) => theme.COLORS_LIGHT.light_400};
+      font-family: ${({ theme }) => theme.FONTS_FAMILY.roboto};
       font-size: 1.4rem;
       line-height: 160%;
       max-width: 16rem;
@@ -81,13 +78,26 @@ export const Content = styled.div`
 
 export const Items = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
 
-  > p {
-    color: ${({ theme }) => theme.COLORS_LIGHT.light_300};
-    font-family: ${({ theme }) => theme.FONTS_FAMILY.roboto};
-    font-size: 1.6rem;
+  > div {
+    display: flex;
+    gap: 2rem;
+    p {
+      color: ${({ theme }) => theme.COLORS_LIGHT.light_300};
+      font-family: ${({ theme }) => theme.FONTS_FAMILY.roboto};
+      font-size: 1.6rem;
+    }
+  }
+
+  > button {
+    padding: 1rem;
+  }
+  
+  @media (min-width: 768px) {
+    flex-direction: row;
+    margin-top: 2rem;
   }
 `

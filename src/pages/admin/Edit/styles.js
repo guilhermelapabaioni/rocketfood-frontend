@@ -73,7 +73,7 @@ export const FoodItem = styled.div`
   flex-direction: column;
   gap: .6rem;
 
-  > div {
+  > .ingredients {
     display: flex;
     flex-wrap: wrap;
     gap: .2rem;

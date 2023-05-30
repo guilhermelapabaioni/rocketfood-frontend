@@ -61,7 +61,7 @@ export function Home() {
         <Section title="Sobremesas">
           {foods.map(
             food =>
-              food.category === 'prato-principal' && (
+              food.category === 'sobremesa' && (
                 <Food key={String(food.id)} data={food} />
               )
           )}
@@ -69,7 +69,7 @@ export function Home() {
         <Section title="Bebidas">
           {foods.map(
             food =>
-              food.category === 'sobremesa' && (
+              food.category === 'bebida' && (
                 <Food key={String(food.id)} data={food} />
               )
           )}

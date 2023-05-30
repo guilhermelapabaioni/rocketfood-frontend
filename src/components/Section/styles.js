@@ -9,26 +9,35 @@ export const Container = styled.div`
 `
 
 export const SliderWrapper = styled(Slider)`
-  .slick-slide > div {
-    margin: 0 1rem;
-    height: 100%;
+  > ul * {
+    display: none;
   }
 
-  .slick-slide {
-    height: 100%;
-    width: fit-content; /* Usando fit-content para que o tamanho do slide seja definido pelo seu conteúdo */
-    align-self: left;
+ .slick-slider {
+    .slick-list{
+       .slick-track{
+        transform: none;
+        margin: 0;
+      }
+    }
+  }
+
+  .slick-track{
+    margin: 0;
+  }
+
+  .slick-slide > div {
+    margin: 0 1rem;
+    display: flex;
   }
 
   .slick-arrow::before{
     display: none;
   }
 
-  @media (min-width: 768px) {
-    .slick-arrow{
-      display: block;
-    }
+  
 
+  @media (min-width: 768px) {
     .slick-prev,
     .slick-next {
       display: block;

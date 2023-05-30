@@ -167,7 +167,7 @@ export function Edit() {
             <div className="group main-grid">
               <FoodItem>
                 <Label title="Ingredientes" />
-                <div>
+                <div className="ingredients">
                   <Ingredient
                     isNew
                     placeholder="Ingrediente"

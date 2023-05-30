@@ -64,20 +64,22 @@ export function Food({ data, ...rest }) {
           />
           <p className="description">{data.description}</p>
           <p className="price">{'R$ ' + data.price}</p>
-          <Items>
-            <ButtonText
-              icon={AiOutlineMinus}
-              size={20}
-              onClick={() => setQuantity(quantity - 1)}
-            />
-            <p>{quantity < 0 ? (quantity = 0) : quantity}</p>
-            <ButtonText
-              icon={AiOutlinePlus}
-              size={20}
-              onClick={() => setQuantity(quantity + 1)}
-            />
+          <Items className="items">
+            <div>
+              <ButtonText
+                icon={AiOutlineMinus}
+                size={20}
+                onClick={() => setQuantity(quantity - 1)}
+              />
+              <p>{quantity < 0 ? (quantity = 0) : quantity}</p>
+              <ButtonText
+                icon={AiOutlinePlus}
+                size={20}
+                onClick={() => setQuantity(quantity + 1)}
+              />
+            </div>
+            <Button title={'Incluir'} onClick={incrementOrders} />
           </Items>
-          <Button title={'Incluir'} onClick={incrementOrders} />
         </Content>
       )}
     </Container>
