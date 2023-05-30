@@ -42,8 +42,16 @@ export function Home() {
       <Content>
         <Intro>
           <div>
-            <img src={'../../assets/pngegg 1.png'} alt="" className="mobile" />
-            <img src={'../../assets/pngegg 1.png'} alt="" className="desktop" />
+            <img
+              src={'../../assets/introImage.png'}
+              alt=""
+              className="mobile"
+            />
+            <img
+              src={'../../assets/introImage.png'}
+              alt=""
+              className="desktop"
+            />
           </div>
           <div>
             <h2>Sabores inigualáveis</h2>
