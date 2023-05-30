@@ -43,12 +43,12 @@ export function Home() {
         <Intro>
           <div>
             <img
-              src={'src/assets/introImage.png'}
+              src={'images/introImage.png'}
               alt=""
               className="mobile"
             />
             <img
-              src={'src/assets/introImage.png'}
+              src={'images/introImage.png'}
               alt=""
               className="desktop"
             />
