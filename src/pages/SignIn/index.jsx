@@ -38,7 +38,7 @@ export function SignIn() {
         setEmailError(true)
         setPasswordError(true)
       } else {
-        toast.error('We have an error in our service, try again later')
+        toast.error('Probably we have some problem in the system, try again later')
       }
     }
   }
@@ -67,7 +67,7 @@ export function SignIn() {
                 <label htmlFor="">Password</label>
                 <Input
                   type="password"
-                  placeholder="Insira sua senha"
+                  placeholder="Password"
                   error={passwordError}
                   onChange={event => {
                     setPassword(event.target.value)

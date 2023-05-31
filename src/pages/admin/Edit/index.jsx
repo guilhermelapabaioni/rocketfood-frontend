@@ -65,13 +65,13 @@ export function Edit() {
         headers: { 'Content-Type': 'multipart/form-data' }
       })
 
-      toast.success(`Prato ${data.name} atualizado com sucesso!`)
+      toast.success(`Food ${data.name} updated with success!`)
       navigate('/')
     } catch (error) {
       if (error.response) {
         toast.error(error.response.data.message)
       } else {
-        toast.error('Não foi possivel atualizar a comida.')
+        toast.error('It was not possible to update the food.')
       }
     }
   }
@@ -94,7 +94,7 @@ export function Edit() {
 
   async function deleteFood() {
       await api.delete(`/foods/${params.id}`)
-      toast.success('You have successfully deleted your food.')
+      toast.success('Food deleted with success.')
       navigate('/')
   }
 
