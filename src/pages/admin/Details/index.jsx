@@ -41,7 +41,10 @@ export function Details() {
           </div>
           <FoodImage className="foodImage">
             <img
-              src={`http://localhost:3000/tmp/uploads/${data.image}`}
+              src={
+                `http://localhost:3000/tmp/uploads/${data.image}` ||
+                `https://dashboard.render.com/web/srv-chquki2k728ivvvp8b40/tmp/uploads/${data.image}`
+              }
               alt={`Imagem da comida ${data.name}`}
             />
           </FoodImage>
