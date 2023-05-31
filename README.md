@@ -2,7 +2,7 @@
 
 > Status: Complete 🔓
 
-### It is a restaurant  web application, when the administrator can create, update and delete the foods and the users can only see and make orders..
+### It is a restaurant  web application, when the administrator can create, update and delete the foods and the users can only see and make orders.
 
 ## Pages:
   # In this application we have a different view if you are administrator or common user.
